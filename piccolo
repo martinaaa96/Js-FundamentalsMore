@@ -1,0 +1,40 @@
+function piccolo(array) {
+
+    let map = new Map();
+
+    for (let el of array) {
+        let element = el.split(', ')
+        let command = element[0]
+        let cars = element[1]
+
+        switch (command) {
+            case "IN": map.set(cars); break;
+            case "OUT": map.delete(cars); break;
+
+        }
+    }
+        let entries = Array.from(map).sort()
+       
+        let newArray = [];
+        for( let el of entries){
+            newArray.push(el[0])
+        }
+        console.log(newArray.join('\n'))
+    
+    if( newArray == 0){
+      console.log(`Parking Lot is Empty`)
+    }
+
+
+
+}
+piccolo(['IN, CA2844AA',
+    'IN, CA1234TA',
+    'OUT, CA2844AA',
+    'IN, CA9999TT',
+    'IN, CA2866HI',
+    'OUT, CA1234TA',
+    'IN, CA2844AA',
+    'OUT, CA2866HI',
+    'IN, CA9876HH',
+    'IN, CA2822UU'])
