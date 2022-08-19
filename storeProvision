@@ -1,0 +1,31 @@
+function storeProvision(localStore, forDelivery) {
+    let storeFood = {};
+
+
+    for (let i = 0; i < localStore.length; i += 2) {
+
+        let product = localStore[i];
+        storeFood[product] = Number(localStore[i + 1])
+
+    }
+
+    for (let i = 0; i < forDelivery.length; i += 2) {
+        let product = forDelivery[i];
+
+        if (!storeFood.hasOwnProperty(product)) {
+            storeFood[product] = 0;
+        }
+        storeFood[product] += Number(forDelivery[i + 1])
+
+    }
+    for (let el in storeFood) {
+        console.log(`${el} -> ${storeFood[el]} `)
+    }
+
+}
+storeProvision([
+    'Chips', '5', 'CocaCola', '9', 'Bananas', '14', 'Pasta', '4', 'Beer', '2'
+],
+    [
+        'Flour', '44', 'Oil', '12', 'Pasta', '7', 'Tomatoes', '70', 'Bananas', '30'
+    ])
