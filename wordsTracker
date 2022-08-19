@@ -1,0 +1,34 @@
+function wordsTracker(date){
+
+    let map = new Map();
+    let findWord = date.shift().split(' ')
+
+    for(let word of findWord){
+        map.set(word,0)
+
+    }
+    for(let line of date){
+        if(map.has(line)){
+            let oldSize = map.get(line)
+            map.set(line, oldSize + 1)
+        }
+
+    }
+    let sortedEntries = Array.from(map.entries()).sort(([keyA,valueA],[keyB,valueB]) => {
+        return valueB - valueA;
+
+    })
+    for(let el of sortedEntries){
+        console.log( `${el[0]} - ${el[1]}`)
+    }
+
+
+}
+
+wordsTracker([
+    'this sentence', 
+    'In', 'this', 'sentence', 'you', 
+    'have', 'to', 'count', 'the', 'occurrences',
+     'of', 'the', 'words', 'this', 'and', 'sentence', 
+     'because', 'this', 'is', 'your', 'task'
+    ])
