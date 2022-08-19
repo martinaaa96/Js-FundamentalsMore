@@ -1,0 +1,49 @@
+function companyUsers(array){
+    let map = new Map();
+    
+let newArray = [];
+
+    for( let el of array){
+        
+        let spliter = el.split(' -> ')
+        let companyNames = spliter.shift()
+        let codes = spliter[0]
+        if (!map.has(companyNames)) {
+            map.set(companyNames, codes);
+
+        } else {
+            let oldQuantity = map.get(companyNames)
+            let newQuantity = oldQuantity + ' ' + codes
+            map.set(companyNames, newQuantity)
+        }
+        
+           
+    }
+    let sortedEntries = Array.from(map.entries())
+      
+
+    for(let [key,value] of sortedEntries){
+        let splitedCodes = value.split(' ')
+        
+    
+    let unique = [...new Set(splitedCodes)]
+    map.set(key,unique)
+    }
+    let sortedName = Array.from(map).sort(([keyA,valueA],[keyB,valueB]) => {
+        return  keyA.localeCompare(keyB)
+    
+    })
+    for( let [name,code] of sortedName){
+        console.log(`${name}`)
+        console.log(`-- ${code.join('\n-- ')}`)
+    }
+
+    }
+
+companyUsers([
+    'SoftUni -> AA12345',
+    'SoftUni -> CC12344',
+    'Lenovo -> XX23456',
+    'SoftUni -> AA12345',
+    'Movement -> DD11111'
+    ])
